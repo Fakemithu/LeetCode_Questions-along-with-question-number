@@ -1,0 +1,25 @@
+// This code is written in C language
+
+int* plusOne(int* digits, int digitsSize, int* returnSize) {
+    int carry = 1; 
+    int i;
+
+    int *ret_arr = (int*)malloc((digitsSize + 1) * sizeof(int));
+    if (!ret_arr)
+     return NULL;
+
+    for (i = digitsSize - 1; i >= 0; i--) {
+        int sum = digits[i] + carry;
+        ret_arr[i + 1] = sum % 10; 
+        carry = sum / 10;          
+    }
+
+    if (carry) {
+        ret_arr[0] = 1;
+        *returnSize = digitsSize + 1;
+        return ret_arr;
+    } else {
+        *returnSize = digitsSize;
+        return ret_arr + 1; 
+    }
+}
